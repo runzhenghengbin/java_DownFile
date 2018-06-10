@@ -1,26 +1,28 @@
+package com.zhb.controller;
 
 
+import com.zhb.utils.DownloadFileUtil;
+import org.apache.commons.io.IOUtils;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
-## 功能概述
+/**
+ * @Auther: curry
+ * @Date: 2018/6/10 17:56
+ * @Description:
+ */
+@RestController
+public class DownloadFileController {
 
-通过url下载java文件
-
-增加通过url下载图片，将图片放到zip进行下载。使用springboot进行编写
-
-## 特性
-
-- 功能专一，简单好用
-
-## 兼容性
-
-- Chrome 23+ (Windows, Mac, Android, iOS, Linux, Chrome OS)
-- Firefox 4+ (Windows, Mac, Android, Linux)
-- Internet Explorer 6+ (Windows, Windows Phone)
-- Opera 10+ (Windows, linux, Android)
-
-## 下载代码展示
-```
+    /**
+     * 下载在线图片
+     * 下载文件为图片格式
+     */
     @RequestMapping("/downloadPic/{type}")
     public void downloadPic(HttpServletRequest request, HttpServletResponse response, @PathVariable(value = "type",required = true) String type) throws IOException {
         String fileName = "";
@@ -46,18 +48,8 @@
         IOUtils.write(data, response.getOutputStream());
     }
 
-```
-
-## 报告问题
-
-- [Issues](https://github.com/runzhenghengbin/java_DownFile/issues "report question")
-
-## 作者
-
-**温暖阳光**
 
 
 
-## 为什么会有这个项目
 
-主要是做到项目,文件上传后存在mongodb,返回url,需要通过url下载该文件
+}
